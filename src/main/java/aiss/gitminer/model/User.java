@@ -29,15 +29,30 @@ public class User {
     @OneToMany(mappedBy = "author")
     private List<Comment> authoredComments;
 
+    @Column(name = "html_url")
+    private String htmlUrl;
+
+    @Column(name = "followers")
+    private Integer followers;
+
+
+
+
+
+
+
+
     public User() {
     }
 
-    public User(String id, String username, String name, String avatar_url, String web_url) {
+    public User(String id, String username, String name, String avatar_url, String web_url, String htmlUrl, Integer followers) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.avatar_url = avatar_url;
         this.web_url = web_url;
+        this.htmlUrl = htmlUrl;
+        this.followers = followers;
     }
 
     public String getId() { return id; }
@@ -68,6 +83,14 @@ public class User {
         this.web_url = web_url;
     }
 
+    public String getHtml_url() { return htmlUrl; }
+
+    public void setHtml_url(String html_url) { this.htmlUrl = html_url; }
+
+    public Integer getFollowers() { return followers; }
+
+    public void setFollowers(Integer followers) { this.followers = followers; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -91,6 +114,14 @@ public class User {
         sb.append("web_url");
         sb.append('=');
         sb.append(((this.web_url == null) ? "<null>" : this.web_url));
+        sb.append(',');
+        sb.append("html_url");
+        sb.append('=');
+        sb.append(((this.htmlUrl == null) ? "<null>" : this.htmlUrl));
+        sb.append(',');
+        sb.append("followers");
+        sb.append('=');
+        sb.append(((this.followers == null) ? "<null>" : this.followers));
         sb.append(',');
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');

@@ -57,11 +57,20 @@ public class Issue {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    @Column(name = "html_url")
+    private String htmlUrl;
+
+    @Column(name = "author_association")
+    private String authorAssociation;
+
     public Issue() {
 
     }
 
-    public Issue(String id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Integer votes, List<Comment> comments) {
+    public Issue(String id, String title, String description, String state,
+                 String created_at, String updated_at, String closed_at,
+                 List<String> labels, User author, User assignee,
+                 Integer votes, List<Comment> comments, String htmlUrl, String authorAssociation) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -74,6 +83,8 @@ public class Issue {
         this.assignee = assignee;
         this.votes = votes;
         this.comments = comments;
+        this.htmlUrl = htmlUrl;
+        this.authorAssociation = authorAssociation;
     }
 
     public String getId() { return id; }
@@ -128,6 +139,14 @@ public class Issue {
 
     public void setComments(List<Comment> comments) { this.comments = comments; }
 
+    public String getHtmlUrl() { return htmlUrl; }
+
+    public void setHtmlUrl(String htmlUrl) { this.htmlUrl = htmlUrl; }
+
+    public String getAuthorAssociation() { return authorAssociation; }
+
+    public void setAuthorAssociation(String authorAssociation) { this.authorAssociation = authorAssociation; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -175,6 +194,14 @@ public class Issue {
         sb.append("comments");
         sb.append('=');
         sb.append(((this.comments == null) ? "<null>" : this.comments));
+        sb.append(',');
+        sb.append("htmlUrl");
+        sb.append('=');
+        sb.append(((this.htmlUrl == null) ? "<null>" : this.htmlUrl));
+        sb.append(',');
+        sb.append("authorAssociation");
+        sb.append('=');
+        sb.append(((this.authorAssociation == null) ? "<null>" : this.authorAssociation));
         sb.append(',');
 
         if (sb.charAt((sb.length() - 1)) == ',') {

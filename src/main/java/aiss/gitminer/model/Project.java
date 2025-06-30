@@ -27,16 +27,24 @@ public class Project {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Issue> issues;
 
+    @Column(name = "html_url")
+    private String htmlUrl;
+
+    @Column(name = "stargazers_count")
+    private Integer stargazersCount;
+
     public Project() {
 
     }
 
-    public Project(String id, String name, String web_url) {
+    public Project(String id, String name, String web_url, String htmlUrl, Integer stargazersCount) {
         this.id = id;
         this.name = name;
         this.web_url = web_url;
         this.commits = new ArrayList<>();
         this.issues = new ArrayList<>();
+        this.htmlUrl = htmlUrl;
+        this.stargazersCount = stargazersCount;
     }
 
     public String getId() {
@@ -79,6 +87,14 @@ public class Project {
         this.issues = issues;
     }
 
+    public String getHtmlUrl() { return htmlUrl; }
+
+    public void setHtmlUrl(String htmlUrl) { this.htmlUrl = htmlUrl; }
+
+    public Integer getStargazersCount() { return stargazersCount; }
+
+    public void setStargazersCount(Integer stargazersCount) {this.stargazersCount = stargazersCount;}
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -95,6 +111,13 @@ public class Project {
         sb.append('=');
         sb.append(((this.issues == null)?"<null>":this.issues));
         sb.append(',');
+        sb.append("htmlUrl");
+        sb.append('=');
+        sb.append(((this.htmlUrl == null)?"<null>":this.htmlUrl));
+        sb.append(',');
+        sb.append("stargazersCount");
+        sb.append('=');
+        sb.append(((this.stargazersCount) == null)?"<null>":this.stargazersCount);
 
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

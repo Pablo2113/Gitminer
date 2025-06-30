@@ -38,10 +38,16 @@ public class Commit {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    @Column(name = "html_url")
+    private String htmlUrl;
+
+    @Column(name = "comments_url")
+    private String commentsUrl;
+
     public Commit() {
     }
 
-    public Commit(String id, String title, String message, String authorName, String authorEmail, String authoredDate, String webUrl) {
+    public Commit(String id, String title, String message, String authorName, String authorEmail, String authoredDate, String webUrl, String htmlUrl, String commentsUrl) {
         this.id = id;
         this.title = title;
         this.message = message;
@@ -49,6 +55,8 @@ public class Commit {
         this.author_email = authorEmail;
         this.authored_date = authoredDate;
         this.web_url = webUrl;
+        this.htmlUrl = htmlUrl;
+        this.commentsUrl = commentsUrl;
     }
 
     @JsonProperty("id")
@@ -131,6 +139,18 @@ public class Commit {
         this.project = project;
     }
 
+    @JsonProperty("html_url")
+    public String getHtmlUrl() { return htmlUrl; }
+
+    @JsonProperty("html_url")
+    public void setHtmlUrl(String htmlUrl) { this.htmlUrl = htmlUrl; }
+
+    @JsonProperty("comments_url")
+    public String getCommentsUrl() { return commentsUrl; }
+
+    @JsonProperty("comments_url")
+    public void setCommentsUrl(String commentsUrl) { this.commentsUrl = commentsUrl; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -162,6 +182,14 @@ public class Commit {
         sb.append("webUrl");
         sb.append('=');
         sb.append(((this.web_url == null) ? "<null>" : this.web_url));
+        sb.append(',');
+        sb.append("htmlUrl");
+        sb.append('=');
+        sb.append(((this.htmlUrl == null) ? "<null>" : this.htmlUrl));
+        sb.append(',');
+        sb.append("commentsUrl");
+        sb.append('=');
+        sb.append(((this.commentsUrl == null) ? "<null>" : this.commentsUrl));
         sb.append(',');
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');

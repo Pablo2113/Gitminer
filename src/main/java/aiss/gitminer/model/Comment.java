@@ -33,16 +33,24 @@ public class Comment {
     @JoinColumn(name = "issue_id")
     private Issue issue;
 
+    @Column(name = "html_url")
+    private String htmlUrl;
+
+    @Column(name = "issue_url")
+    private String issueUrl;
+
     public Comment() {
 
     }
 
-    public Comment(String id, String body, User author, String created_at, String updated_at) {
+    public Comment(String id, String body, User author, String created_at, String updated_at, String htmlUrl, String issueUrl) {
         this.id = id;
         this.body = body;
         this.author = author;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.htmlUrl = htmlUrl;
+        this.issueUrl = issueUrl;
 
     }
 
@@ -74,6 +82,14 @@ public class Comment {
 
     public void setIssue(Issue issue) { this.issue = issue; }
 
+    public String getHtmlUrl() { return htmlUrl; }
+
+    public void setHtmlUrl(String htmlUrl) { this.htmlUrl = htmlUrl; }
+
+    public String getIssueUrl() { return issueUrl; }
+
+    public void setIssueUrl(String issueUrl) { this.issueUrl = issueUrl; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -99,8 +115,18 @@ public class Comment {
         sb.append(((this.updated_at == null) ? "<null>" : this.updated_at));
         sb.append(',');
         sb.append("comments");
+        sb.append(',');
+        sb.append("issue");
         sb.append('=');
         sb.append(((this.issue == null) ? "<null>" : this.issue));
+        sb.append(',');
+        sb.append("htmlUrl");
+        sb.append('=');
+        sb.append(this.htmlUrl == null ? "<null>" : this.htmlUrl);
+        sb.append(',');
+        sb.append("issueUrl");
+        sb.append('=');
+        sb.append(this.issueUrl == null ? "<null>" : this.issueUrl);
         sb.append(',');
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');
