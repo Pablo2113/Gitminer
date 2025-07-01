@@ -33,11 +33,19 @@ public class Project {
     @Column(name = "stargazers_count")
     private Integer stargazersCount;
 
+    @Column(name= "language")
+    private String language;
+
+    @Column(name="is_private")
+    private Boolean isPrivate;
+
+
     public Project() {
 
     }
 
-    public Project(String id, String name, String web_url, String htmlUrl, Integer stargazersCount) {
+    public Project(String id, String name, String web_url, String htmlUrl, Integer stargazersCount,
+                    String language, Boolean isPrivate) {
         this.id = id;
         this.name = name;
         this.web_url = web_url;
@@ -45,6 +53,8 @@ public class Project {
         this.issues = new ArrayList<>();
         this.htmlUrl = htmlUrl;
         this.stargazersCount = stargazersCount;
+        this.language = language;
+        this.isPrivate = isPrivate;
     }
 
     public String getId() {
@@ -95,6 +105,12 @@ public class Project {
 
     public void setStargazersCount(Integer stargazersCount) {this.stargazersCount = stargazersCount;}
 
+    public String getLanguage() { return language; }
+    public void setLanguage(String language) { this.language = language; }
+
+    public Boolean getIsPrivate() { return isPrivate; }
+    public void setIsPrivate(Boolean isPrivate) { this.isPrivate = isPrivate; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -118,6 +134,15 @@ public class Project {
         sb.append("stargazersCount");
         sb.append('=');
         sb.append(((this.stargazersCount) == null)?"<null>":this.stargazersCount);
+        sb.append(',');
+        sb.append("language");
+        sb.append('=');
+        sb.append(((this.language == null)?"<null>":this.language));
+        sb.append(',');
+        sb.append("isPrivate");
+        sb.append('=');
+        sb.append(((this.isPrivate == null)?"<null>":this.isPrivate));
+        sb.append(',');
 
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

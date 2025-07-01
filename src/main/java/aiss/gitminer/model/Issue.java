@@ -63,6 +63,12 @@ public class Issue {
     @Column(name = "author_association")
     private String authorAssociation;
 
+    @Column(name = "kind")
+    private String kind;
+
+    @Column(name="watches")
+    private Integer watches;
+
     public Issue() {
 
     }
@@ -70,7 +76,8 @@ public class Issue {
     public Issue(String id, String title, String description, String state,
                  String created_at, String updated_at, String closed_at,
                  List<String> labels, User author, User assignee,
-                 Integer votes, List<Comment> comments, String htmlUrl, String authorAssociation) {
+                 Integer votes, List<Comment> comments, String htmlUrl, String authorAssociation
+                    , String kind, Integer watches) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -85,6 +92,8 @@ public class Issue {
         this.comments = comments;
         this.htmlUrl = htmlUrl;
         this.authorAssociation = authorAssociation;
+        this.kind = kind;
+        this.watches = watches;
     }
 
     public String getId() { return id; }
@@ -147,6 +156,12 @@ public class Issue {
 
     public void setAuthorAssociation(String authorAssociation) { this.authorAssociation = authorAssociation; }
 
+    public String getKind() { return kind; }
+    public void setKind(String kind) { this.kind = kind; }
+
+    public Integer getWatches() { return watches; }
+    public void setWatches(Integer watches) { this.watches = watches; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -202,6 +217,14 @@ public class Issue {
         sb.append("authorAssociation");
         sb.append('=');
         sb.append(((this.authorAssociation == null) ? "<null>" : this.authorAssociation));
+        sb.append(',');
+        sb.append("kind");
+        sb.append('=');
+        sb.append(((this.kind == null) ? "<null>" : this.kind));
+        sb.append(',');
+        sb.append("watches");
+        sb.append('=');
+        sb.append(((this.watches == null) ? "<null>" : this.watches));
         sb.append(',');
 
         if (sb.charAt((sb.length() - 1)) == ',') {

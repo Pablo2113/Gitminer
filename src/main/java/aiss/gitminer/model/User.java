@@ -35,6 +35,12 @@ public class User {
     @Column(name = "followers")
     private Integer followers;
 
+    @Column(name="nickname")
+    private String nickname;
+
+    @Column(name="account_status")
+    private Integer accountStatus;
+
 
 
 
@@ -45,7 +51,8 @@ public class User {
     public User() {
     }
 
-    public User(String id, String username, String name, String avatar_url, String web_url, String htmlUrl, Integer followers) {
+    public User(String id, String username, String name, String avatar_url,
+                String web_url, String htmlUrl, Integer followers, String nickname, Integer accountStatus) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -53,6 +60,9 @@ public class User {
         this.web_url = web_url;
         this.htmlUrl = htmlUrl;
         this.followers = followers;
+        this.nickname = nickname;
+        this.accountStatus = accountStatus;
+
     }
 
     public String getId() { return id; }
@@ -91,6 +101,13 @@ public class User {
 
     public void setFollowers(Integer followers) { this.followers = followers; }
 
+
+    public String getNickname() { return nickname; }
+    public void setNickname(String nickname) { this.nickname = nickname; }
+
+    public Integer getAccountStatus() { return accountStatus; }
+    public void setAccountStatus(Integer accountStatus) { this.accountStatus = accountStatus; }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -123,6 +140,16 @@ public class User {
         sb.append('=');
         sb.append(((this.followers == null) ? "<null>" : this.followers));
         sb.append(',');
+        sb.append("nickname");
+        sb.append('=');
+        sb.append(((this.nickname == null) ? "<null>" : this.nickname));
+        sb.append(',');
+        sb.append("accountStatus");
+        sb.append('=');
+        sb.append(((this.accountStatus == null) ? "<null>" : this.accountStatus));
+        sb.append(',');
+
+
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');
         } else {
